@@ -1,0 +1,17 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsp/jstl/fmt"
+          version="2.0">
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:element name="html">
+        <jsp:attribute name="lang">EN</jsp:attribute>
+        <jsp:body>
+            <p>
+                <form method="post" action="finaliseBooking">
+                    <input type="submit" value="Finalise My Booking!"/>
+                </form>
+            </p>
+        </jsp:body>
+    </jsp:element>
+</jsp:root>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="DC3160:war">
+    <output-path>$PROJECT_DIR$/DC3160/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>DC3160</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ROOT.war">
+      <element id="artifact" artifact-name="DC3160:war exploded" />
+    </root>
+  </artifact>
+</component>

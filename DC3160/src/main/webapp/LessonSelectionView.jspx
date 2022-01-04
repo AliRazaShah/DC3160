@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Ali R Shah
+  Date: 22/12/2021
+  Time: 21:19
+  To change this template use File | Settings | File Templates.
+-->
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsp/jstl/fmt"
+          version="2.0">
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:element name="html">
+        <jsp:attribute name="lang">EN</jsp:attribute>
+        <jsp:body>
+            <html>
+            <head><title>View Timetable</title></head>
+            <body>
+            <h1>My Lesson Plan</h1>
+            <jsp:include page="navigationBar.jspx"/>
+            <h2>${sessionScope.user}, your selected lessons:</h2>
+
+            <table border="1">
+                <tr>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Level</th>
+                </tr>
+                <c:forEach var="item" items="${lessonSelection.items}">
+                    <form method="post" action="removeLesson">
+                        <tr>
+                            <td><c:out value="${item.value.description}"/></td>
+                            <td><c:out value="${item.value.date}"/></td>
+                            <td><c:out value="${item.value.startTime}"/></td>
+                            <td><c:out value="${item.value.endTime}"/></td>
+                            <td><c:out value="${item.value.level}"/></td>
+                            <td><input type="hidden" name="lessonid" value="${item.key}"/>
+                                <input type="submit" value="Cancel"/></td>
+                        </tr>
+                    </form>
+                </c:forEach>
+            </table>
+            <form method="post" action="finaliseBooking">
+                <input type="submit" value="Finalise Booking"/>
+            </form>
+            </body>
+            </html>
+        </jsp:body>
+    </jsp:element>
+</jsp:root>

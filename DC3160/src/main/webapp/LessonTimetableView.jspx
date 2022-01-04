@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Ali R Shah
+  Date: 22/12/2021
+  Time: 21:19
+  To change this template use File | Settings | File Templates.
+-->
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsp/jstl/fmt"
+          version="2.0">
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:element name="html">
+        <jsp:attribute name="lang">EN</jsp:attribute>
+        <jsp:body>
+            <html>
+            <head><title>View Timetable</title></head>
+            <body>
+            <h1>Welcome back ${sessionScope.user}!</h1>
+            <jsp:include page="navigationBar.jspx"/>
+            <h2>Our Lessons:</h2>
+            <p>Here you can find information for each lesson and select it!</p>
+
+            <jsp:useBean class="model.LessonTimetable" id="lessonTimetable" scope="page"/>
+            <table border="1">
+                <tr>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Level</th>
+                </tr>
+                <c:forEach var="lesson" items="${lessonTimetable.lessons}">
+                    <form method="post" action="chooseLesson">
+                        <tr>
+                            <td><c:out value="${lesson.value.description}"/></td>
+                            <td><c:out value="${lesson.value.date}"/></td>
+                            <td><c:out value="${lesson.value.startTime}"/></td>
+                            <td><c:out value="${lesson.value.endTime}"/></td>
+                            <td><c:out value="${lesson.value.level}"/></td>
+                            <c:choose>
+                                <c:when test="${sessionScope.MaxLessonsSelected == true}">
+
+                                    <td><input type="hidden" name="lessonid" value="${lesson.key}"/>
+                                        <input type="submit" value="Select lesson" disabled="disabled"/></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><input type="hidden" name="lessonid" value="${lesson.key}"/>
+                                        <input type="submit" value="Select lesson"/></td>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </tr>
+                    </form>
+                </c:forEach>
+            </table>
+            </body>
+            </html>
+        </jsp:body>
+    </jsp:element>
+</jsp:root>
